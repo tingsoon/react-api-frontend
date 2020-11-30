@@ -16,6 +16,10 @@ export default class Master extends Component {
     axios.get(`https://jsonplaceholder.typicode.com/users`)
       .then(res => {
         const data = res.data;
+        console.log(data);
+        data.sort(function(a,b) {
+          return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)
+        })
         this.setState({ 
           users : data,
           isLoading : false,
