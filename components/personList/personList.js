@@ -18,7 +18,8 @@ export default class Master extends Component {
         const data = res.data;
         console.log(data);
         data.sort(function(a,b) {
-          return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)
+          // return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)
+          return (a.name > b.name) ? 1 : -1;
         })
         this.setState({ 
           users : data,
@@ -27,7 +28,6 @@ export default class Master extends Component {
       })
       .catch(error => this.setState({ error, isLoading: false }));
   }
-
 
   render() {
     const { users, error, isLoading } = this.state;
