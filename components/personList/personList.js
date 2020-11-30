@@ -48,7 +48,7 @@ export default class Master extends Component {
           users.map(user => {
             return (
             <BrowserRouter>
-              <div>
+              <div key="person">
                 <Link to={`/person/${user.id}`}><h3>{user.name}</h3></Link>
               </div>
             </BrowserRouter>
