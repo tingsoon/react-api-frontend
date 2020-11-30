@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+
+import Person from "../person/person";
 
 export default class Master extends Component {
   constructor() {
@@ -16,7 +19,7 @@ export default class Master extends Component {
     axios.get(`https://jsonplaceholder.typicode.com/users`)
       .then(res => {
         const data = res.data;
-        console.log(data);
+        // console.log(data);
         data.sort(function(a,b) {
           // return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0)
           return (a.name > b.name) ? 1 : -1;
@@ -37,14 +40,25 @@ export default class Master extends Component {
         {!isLoading ? (
           users.map(user => {
             return (
-              <div>
-                <h3>{user.name}</h3>
-              </div>
+            <BrowserRouter>
+              <nav>
+                <div>
+                  <Link to={`/person/${user.id}`}><h3>{user.name}</h3></Link>
+                </div>
+              </nav>
+            </BrowserRouter>
             )
           })
         ) : (
           <h1>Loading...</h1>
         )}
+        <BrowserRouter>
+          <Switch>
+            <Route path={`/person/:id`}>
+              <Person />
+            </Route>
+          </Switch>
+        </BrowserRouter>
       </div>
     )
   }
