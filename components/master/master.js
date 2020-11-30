@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from 'axios';
 
+import PersonList from "../personList/personList";
+
 export default class Master extends Component {
   constructor() {
     super();
@@ -18,7 +20,8 @@ export default class Master extends Component {
   render() {
     return (
       <div>
-      <h1>Contacts</h1>
+        <h1>Contacts</h1>
+        <PersonList />
       </div>
     );
   }
