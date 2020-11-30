@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import { BrowserRouter, Link, Route, Switch, useLocation } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch, useParams } from 'react-router-dom';
 
 // import Person from "../person/person";
 
 function Person() {
-  const { id } = useLocation();
+  let { id } = useParams();
   console.log(id)
 
-  return <h3>ID: {id}</h3>
+  return <div><h3>ID: {id}</h3></div>
 }
 
 export default class Master extends Component {
@@ -58,8 +58,7 @@ export default class Master extends Component {
           <h1>Loading...</h1>
         )}
         <BrowserRouter>
-            <Route path={`/person/:id`} >
-              <Person />
+            <Route path={`/person/:id`} component={Person}>
             </Route>
         </BrowserRouter>
       </div>
