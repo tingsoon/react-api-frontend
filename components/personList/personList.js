@@ -1,8 +1,15 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import { BrowserRouter, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Link, Route, Switch, useLocation } from 'react-router-dom';
 
-import Person from "../person/person";
+// import Person from "../person/person";
+
+function Person() {
+  const { id } = useLocation();
+  console.log(id)
+
+  return <h3>ID: {id}</h3>
+}
 
 export default class Master extends Component {
   constructor() {
@@ -41,11 +48,9 @@ export default class Master extends Component {
           users.map(user => {
             return (
             <BrowserRouter>
-              <nav>
-                <div>
-                  <Link to={`/person/${user.id}`}><h3>{user.name}</h3></Link>
-                </div>
-              </nav>
+              <div>
+                <Link to={`/person/${user.id}`}><h3>{user.name}</h3></Link>
+              </div>
             </BrowserRouter>
             )
           })
@@ -53,13 +58,12 @@ export default class Master extends Component {
           <h1>Loading...</h1>
         )}
         <BrowserRouter>
-          <Switch>
-            <Route path={`/person/:id`}>
+            <Route path={`/person/:id`} >
               <Person />
             </Route>
-          </Switch>
         </BrowserRouter>
       </div>
     )
   }
 }
+

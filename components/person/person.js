@@ -1,14 +1,13 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import queryString from 'query-string'
 
 export default function Person() {
 
-  const { id } = useParams();
-  
   return (
     <div>
       <h2>PERSON LAA</h2>
-      <h4>{id}</h4>
+      <h4>id</h4>
     </div>
   );
 }
