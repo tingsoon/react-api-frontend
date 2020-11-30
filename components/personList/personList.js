@@ -21,6 +21,7 @@ export default class Master extends Component {
           isLoading : false,
          });
       })
+      .catch(error => this.setState({ error, isLoading: false }));
   }
 
 
@@ -28,18 +29,19 @@ export default class Master extends Component {
     const { users, error, isLoading } = this.state;
     return (
       <div>
-        <div>
-          {users.map((user) => (
-            <div>
-              <div >
+        {error ? <p>{error.message}</p> : null} 
+        {!isLoading ? (
+          users.map(user => {
+            return (
+              <div>
                 <h3>{user.name}</h3>
-                <p>{user.email}</p>
-                <p>{user.company.catchPhrase}</p>
               </div>
-            </div>
-          ))}
-        </div>
+            )
+          })
+        ) : (
+          <h1>Loading...</h1>
+        )}
       </div>
-    );
+    )
   }
 }
